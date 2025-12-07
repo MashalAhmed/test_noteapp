@@ -29,26 +29,33 @@ describe("Delete Note Tests", function () {
 
     // ----------------- Existing Test Case -----------------
 
-    // Test Case 8: Delete first note
+    // Test Case 8: Delete first note (Docker/headless safe)
     it("TC8: Should delete first note", async () => {
-        const noteCard = await driver.findElement(By.css(".note-card"));
+        // Wait until at least one note card is present
+        const noteCard = await driver.wait(
+            until.elementLocated(By.css(".note-card")),
+            10000,
+            "No note card found within timeout"
+        );
+    
+        // Get its title
         const noteTitle = await noteCard.findElement(By.css(".note-title")).getText();
-
+    
+        // Click delete button
         const deleteBtn = await noteCard.findElement(By.css(".delete-note-btn"));
         await deleteBtn.click();
-
-        // Wait for note to be removed
-        await driver.wait(until.stalenessOf(noteCard), 5000);
-
-        // Check if notes remain
+    
+        // Wait until the note card disappears from DOM
+        await driver.wait(until.stalenessOf(noteCard), 10000, "Note card did not disappear");
+    
+        // Verify remaining notes
         const remainingNotes = await driver.findElements(By.css(".note-title"));
         if (remainingNotes.length > 0) {
             const remainingTitle = await remainingNotes[0].getText();
             expect(remainingTitle).to.not.equal(noteTitle);
-        } else {
-            // No notes left, test passes
         }
     });
+    
 
     // ----------------- Additional Test Cases -----------------
 
