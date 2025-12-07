@@ -1,0 +1,19 @@
+{
+  "name": "test_noteapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests/**/*.test.js --timeout 30000 --reporter mochawesome --reporter-options reportDir=reports,reportFilename=report"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^6.2.1",
+    "mocha": "^11.7.5",
+    "selenium-webdriver": "^4.38.0"
+  },
+  "devDependencies": {
+    "mochawesome": "^7.1.4"
+  }
+}
