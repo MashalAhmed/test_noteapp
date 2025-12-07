@@ -8,7 +8,7 @@ describe("Add Note Tests", function () {
 
     before(async () => {
         driver = await getDriver();
-        await driver.get("http://localhost:5000/add");
+        await driver.get("http://51.20.43.93:5000/add");
     });
 
     after(async () => {
@@ -29,7 +29,7 @@ describe("Add Note Tests", function () {
         await driver.findElement(By.id("add-note-content")).sendKeys("This is a test note.");
         await driver.findElement(By.id("submit-add-note")).click();
 
-        await driver.wait(until.urlIs("http://localhost:5000/"), 5000);
+        await driver.wait(until.urlIs("http://51.20.43.93:5000/"), 5000);
         const titleText = await driver.findElement(By.css(".note-title")).getText();
         expect(titleText).to.equal("Test Note");
     });
@@ -38,17 +38,17 @@ describe("Add Note Tests", function () {
 
     // Test Case 14: Verify cancel button navigates back to home
     it("TC14: Cancel button navigates back to home", async () => {
-        await driver.get("http://localhost:5000/add");
+        await driver.get("http://51.20.43.93:5000/add");
         const cancelBtn = await driver.findElement(By.id("cancel-add-note"));
         await cancelBtn.click();
-        await driver.wait(until.urlIs("http://localhost:5000/"), 5000);
+        await driver.wait(until.urlIs("http://51.20.43.93:5000/"), 5000);
         const pageTitle = await driver.findElement(By.id("page-title")).getText();
         expect(pageTitle).to.equal("My Notes");
     });
 
     // Test Case 15: Verify title input field is empty initially
     it("TC15: Title input field is empty on page load", async () => {
-        await driver.get("http://localhost:5000/add");
+        await driver.get("http://51.20.43.93:5000/add");
         const titleValue = await driver.findElement(By.id("add-note-title")).getAttribute("value");
         expect(titleValue).to.equal("");
     });
@@ -61,7 +61,7 @@ describe("Add Note Tests", function () {
 
     // Test Case 17: Verify form submission without title shows HTML required validation
     it("TC17: Form submission without title should be blocked", async () => {
-        await driver.get("http://localhost:5000/add");
+        await driver.get("http://51.20.43.93:5000/add");
         const contentInput = await driver.findElement(By.id("add-note-content"));
         await contentInput.sendKeys("Note without title");
         const addBtn = await driver.findElement(By.id("submit-add-note"));
@@ -71,7 +71,7 @@ describe("Add Note Tests", function () {
 
     // Test Case 18: Verify form submission without content shows HTML required validation
     it("TC18: Form submission without content should be blocked", async () => {
-        await driver.get("http://localhost:5000/add");
+        await driver.get("http://51.20.43.93:5000/add");
         const titleInput = await driver.findElement(By.id("add-note-title"));
         await titleInput.sendKeys("Title only");
         const addBtn = await driver.findElement(By.id("submit-add-note"));
