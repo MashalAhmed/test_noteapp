@@ -14,7 +14,7 @@ describe("Edit Note Tests", function () {
         await driver.findElement(By.id("add-note-title")).sendKeys("Note for Edit");
         await driver.findElement(By.id("add-note-content")).sendKeys("Content for edit test");
         await driver.findElement(By.id("submit-add-note")).click();
-        await driver.wait(until.urlIs("http://localhost:5000/"), 5000);
+        await driver.wait(until.urlIs("http://51.20.43.93:5000/"), 5000);
 
         // Navigate to edit first note
         await driver.findElement(By.css(".edit-note-btn")).click();
@@ -44,7 +44,7 @@ describe("Edit Note Tests", function () {
         await contentInput.sendKeys("Updated content.");
 
         await driver.findElement(By.id("save-edit-note")).click();
-        await driver.wait(until.urlIs("http://localhost:5000/"), 5000);
+        await driver.wait(until.urlIs("http://51.20.43.93:5000/"), 5000);
 
         const titleText = await driver.findElement(By.css(".note-title")).getText();
         expect(titleText).to.equal("Updated Test Note");
@@ -54,21 +54,21 @@ describe("Edit Note Tests", function () {
 
     // Test Case 19: Cancel button navigates back to home without saving
     it("TC19: Cancel button should navigate back to home without saving", async () => {
-        await driver.get("http://localhost:5000/");
+        await driver.get("http://51.20.43.93:5000/");
         await driver.findElement(By.css(".edit-note-btn")).click();
         await driver.wait(until.urlContains("/edit/"), 5000);
 
         const cancelBtn = await driver.findElement(By.id("cancel-edit-note"));
         await cancelBtn.click();
 
-        await driver.wait(until.urlIs("http://localhost:5000/"), 5000);
+        await driver.wait(until.urlIs("http://51.20.43.93:5000/"), 5000);
         const pageTitle = await driver.findElement(By.id("page-title")).getText();
         expect(pageTitle).to.equal("My Notes");
     });
 
     // Test Case 20: Edit note title input field has existing value
     it("TC20: Title input field should contain current note title", async () => {
-        await driver.get("http://localhost:5000/");
+        await driver.get("http://51.20.43.93:5000/");
         await driver.findElement(By.css(".edit-note-btn")).click();
         await driver.wait(until.urlContains("/edit/"), 5000);
 
