@@ -8,7 +8,7 @@ describe("Home Page Tests", function () {
 
     before(async () => {
         driver = await getDriver();
-        await driver.get("http://localhost:5000/");
+        await driver.get("http://51.20.43.93:5000/");
     });
 
     after(async () => {
