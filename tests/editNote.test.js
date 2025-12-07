@@ -10,7 +10,7 @@ describe("Edit Note Tests", function () {
         driver = await getDriver();
 
         // Ensure at least one note exists
-        await driver.get("http://localhost:5000/add");
+        await driver.get("http://51.20.43.93:5000/add");
         await driver.findElement(By.id("add-note-title")).sendKeys("Note for Edit");
         await driver.findElement(By.id("add-note-content")).sendKeys("Content for edit test");
         await driver.findElement(By.id("submit-add-note")).click();
