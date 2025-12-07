@@ -2,6 +2,7 @@
   "name": "test_noteapp",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "mocha tests/**/*.test.js --timeout 30000 --reporter mochawesome --reporter-options reportDir=reports,reportFilename=report"
