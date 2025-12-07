@@ -10,17 +10,17 @@ describe("Delete Note Tests", function () {
         driver = await getDriver();
 
         // Ensure at least two notes exist for deletion tests
-        await driver.get("http://localhost:5000/add");
+        await driver.get("http://51.20.43.93:5000/add");
         await driver.findElement(By.id("add-note-title")).sendKeys("Note for Delete 1");
         await driver.findElement(By.id("add-note-content")).sendKeys("Content for delete test 1");
         await driver.findElement(By.id("submit-add-note")).click();
-        await driver.wait(until.urlIs("http://localhost:5000/"), 5000);
+        await driver.wait(until.urlIs("http://51.20.43.93:5000/"), 5000);
 
-        await driver.get("http://localhost:5000/add");
+        await driver.get("http://51.20.43.935000/add");
         await driver.findElement(By.id("add-note-title")).sendKeys("Note for Delete 2");
         await driver.findElement(By.id("add-note-content")).sendKeys("Content for delete test 2");
         await driver.findElement(By.id("submit-add-note")).click();
-        await driver.wait(until.urlIs("http://localhost:5000/"), 5000);
+        await driver.wait(until.urlIs("http://51.20.43.93:5000/"), 5000);
     });
 
     after(async () => {
